@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
+app.use(express.json());
+
 app.use((req, res, next) => {
     console.log(`Request:${req.method} ${req.path}`);
     next();
@@ -12,6 +14,54 @@ app.use((req, res, next) => {
     console.log(`Time: ${req.requestTime}`);
     next();
 });
+
+// Data Category
+
+const users = [
+    {id: 1, name: 'Bob'},
+    {id: 2, name: 'Steve'},
+];
+
+// Client create new data
+
+app.post ('/users', (req, res) => {
+    const{ name } = req.body;
+    if (!name) {
+        return res.status(400).json({error: 'Enter the name...'});
+    }
+    const newUser = {
+        id: users.length + 1,
+        name
+    };
+    users.push(newUser);
+    res.status(201).json(newUser);
+});
+
+
+
+const posts = [
+    {id: 1, userId: 1, title: 'Hello World!'},
+    {id: 2, userId: 2, title: 'This is working'},
+];
+
+const comments = [
+    {id: 1, postId: 1, content: 'Great'},
+    {id: 2, postId: 1, content: 'Awesome!'}
+];
+
+// Routes for category
+app.get('/users', (req, res) => {
+    res.json(users);
+});
+
+app.get('/posts', (req, res) => {
+    res.json(posts);
+});
+
+app.get('/comments', (req, res) => {
+    res.json(comments);
+});
+
 
 app.get('/', (req, res) => {
     res.send(`Request received at ${req.requestTime}`);
