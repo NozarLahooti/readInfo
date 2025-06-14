@@ -37,6 +37,22 @@ app.post ('/users', (req, res) => {
     res.status(201).json(newUser);
 });
 
+// Client PATCH
+
+app.patch('/users/:id', (req, res) => {
+    const userId = parseInt(req.params.id);
+    const {name} = req.req.body;
+
+    const user = users.find(u => u.id === userId);
+    if (!user) {
+        return res.status(404).json({error: 'User not found'});
+    }
+    if (name) {
+        user.name = name;
+    }
+    res.json(user);
+});
+
 
 
 const posts = [
