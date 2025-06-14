@@ -53,6 +53,20 @@ app.patch('/users/:id', (req, res) => {
     res.json(user);
 });
 
+// Client DELETE user 
+
+app.delete('/users/:id', (req, res) => {
+    const userId = parseInt(req.params.id);
+    const userIndex = users.findIndex(u => u.id === userId);
+
+    if(userIndex === -1) {
+        return res.status(404).json({error: 'User not found'});
+    }
+
+    const delUser = users.splice(userIndex, 1)[0];
+    res.json({message: 'User deleted', user: delUser});
+});
+
 
 
 const posts = [
