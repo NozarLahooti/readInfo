@@ -41,7 +41,7 @@ app.post ('/users', (req, res) => {
 
 app.patch('/users/:id', (req, res) => {
     const userId = parseInt(req.params.id);
-    const {name} = req.req.body;
+    const {name} = req.body;
 
     const user = users.find(u => u.id === userId);
     if (!user) {
