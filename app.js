@@ -84,7 +84,16 @@ app.get('/users', (req, res) => {
     res.json(users);
 });
 
+// Query parameters for data filtering
+
 app.get('/posts', (req, res) => {
+    const {userId} = req.query;
+
+    if(userId) {
+        const filteredPosts = posts.filter(p => p.userId === parseInt(userId));
+        return res.json(filteredPosts);
+    }
+    
     res.json(posts);
 });
 
