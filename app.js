@@ -2,7 +2,19 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
+const users = [
+    {id: 1, name: 'Bob'},
+    {id: 2, name: 'Steve'},
+];
+
+
+app.set('view engine', 'ejs');
+app.get('/users-view', (req, res) => {
+    res.render('users', {users});
+})
+
 app.use(express.json());
+
 
 app.use((req, res, next) => {
     console.log(`Request:${req.method} ${req.path}`);
@@ -17,10 +29,10 @@ app.use((req, res, next) => {
 
 // Data Category
 
-const users = [
-    {id: 1, name: 'Bob'},
-    {id: 2, name: 'Steve'},
-];
+// const users = [
+//     {id: 1, name: 'Bob'},
+//     {id: 2, name: 'Steve'},
+// ];
 
 // Client create new data
 
@@ -93,7 +105,7 @@ app.get('/posts', (req, res) => {
         const filteredPosts = posts.filter(p => p.userId === parseInt(userId));
         return res.json(filteredPosts);
     }
-    
+
     res.json(posts);
 });
 
