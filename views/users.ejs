@@ -1,15 +1,31 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Users</title>
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-    <h1>All Users</h1>
-    <ul>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Challenges</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>User Challenges</h1>
+
+    <ul class="challenge-list">
       <% users.forEach(user => { %>
-      <li><%= user.name %></li>
+        <li><%= user.name %></li>
       <% }) %>
     </ul>
-  </body>
+
+    <h2>Send a New Challenge</h2>
+    <form action="/challenges" method="POST" class="challenge-form">
+      <input
+        type="text"
+        name="text"
+        placeholder="Enter your challenge"
+        required
+        maxlength="100"
+      />
+      <button type="submit">Send Challenge</button>
+    </form>
+  </div>
+</body>
 </html>

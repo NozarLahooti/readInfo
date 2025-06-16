@@ -1,22 +1,61 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+  background-color: #f9f9f9;
   padding: 20px;
 }
 
-h1 {
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+h1, h2 {
   color: #333;
+  text-align: center;
 }
 
-ul {
-  list-style-type: none;
+.challenge-list {
+  list-style: none;
   padding: 0;
+  margin-bottom: 20px;
 }
 
-li {
-  background-color: white;
-  margin: 5px 0;
-  padding: 10px;
+.challenge-list li {
+  background: #e3e3e3;
+  margin-bottom: 8px;
+  padding: 10px 15px;
   border-radius: 5px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  font-size: 16px;
+}
+
+.challenge-form {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.challenge-form input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.challenge-form button {
+  background-color: #28a745;
+  border: none;
+  color: white;
+  padding: 0 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.challenge-form button:hover {
+  background-color: #218838;
 }

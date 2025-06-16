@@ -2,10 +2,15 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
+
+
 const users = [
     {id: 1, name: 'Bob'},
     {id: 2, name: 'Steve'},
 ];
+
+app.use(express.static('public'));
+app.use(express.json());
 
 
 app.set('view engine', 'ejs');
@@ -13,7 +18,7 @@ app.get('/users-view', (req, res) => {
     res.render('users', {users});
 })
 
-app.use(express.json());
+
 
 
 app.use((req, res, next) => {
@@ -138,4 +143,28 @@ app.listen(PORT, () => {
 
 // Use static files 
 
-app.use(express.static('public'));
+// app.use(express.static('public'));
+
+
+
+const challenges = [
+  { id: 1, text: 'Do 10 pushups' },
+  { id: 2, text: 'Drink 2 liters of water' }
+];
+
+app.get('/challenges_view', (req, res) => {
+  res.render('users', { users });
+});
+
+app.post('/challenges', (req, res) => {
+  const { text } = req.body;
+  if (!text) {
+    return res.status(400).send('Please enter a challenge.');
+  }
+  const newChallenge = {
+    id: challenges.length + 1,
+    text
+  };
+  challenges.push(newChallenge);
+  res.redirect('/challenges_view');
+});
